@@ -23,12 +23,14 @@ def search(namertag, key, b):
 	headers["X-Authorization"] = key
 	data = request('GET', '/friends/search?gt=' + namertag, headers, payload = {})
 	try:
+		if data != 200:
+			raise TypeError('Error: API Key is invalid')
 		msg = colors.green + '[+]' + colors.reset + colors.white + ' Xuid successfully found' + colors.reset
 		if b == 0:
-			console(msg)
+			print(msg)
 		return data.json()["profileUsers"][0]["id"]
 	except:
-		pass
+		print('Error')
 def send_message(namertag, message, key, b):
 	xuid = search(namertag, key, b)
 	headers = {} 
@@ -42,7 +44,7 @@ def send_message(namertag, message, key, b):
 		if res.json()["message"] == 'Invalid API Key.':
 			raise TypeError(colors.bold_red + 'Error: Your api key is invalid' + colors.reset)
 	except:
-		pass
+		return;
 	if res.status_code != 200:
 		msgError = colors.red + '[!]' + colors.reset + colors.white + ' Message not sent, an error occurred' + colors.reset
 		print(msgError)
@@ -57,6 +59,7 @@ def menu():
 		amount = input('How many messages do you want to send?: ')
 		namertag = input('Put the namertag: ')
 		message = input('What message do you want to send?: ')
+		print(colors.blue + '[*]' + colors.reset + ' Starting...')
 		for b in range(int(amount)):
 			t = threading.Thread(target=send_message, args=(namertag, message, key, b))
 			t.daemon = True

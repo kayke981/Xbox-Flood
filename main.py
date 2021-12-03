@@ -24,7 +24,7 @@ def search(namertag, key, b):
 	data = request('GET', '/friends/search?gt=' + namertag, headers, payload = {})
 	
 	if data != 200:
-		raise TypeError('Error: API Key is invalid')
+		raise TypeError(data.text)
 		pass
 	msg = colors.green + '[+]' + colors.reset + colors.white + ' Xuid successfully found' + colors.reset
 	if b == 0:

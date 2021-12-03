@@ -23,7 +23,7 @@ def search(namertag, key, b):
 	headers["X-Authorization"] = key
 	data = request('GET', '/friends/search?gt=' + namertag, headers, payload = {})
 	
-	if data != 200:
+	if data.status_code != 200:
 		raise TypeError(data.text)
 		pass
 	msg = colors.green + '[+]' + colors.reset + colors.white + ' Xuid successfully found' + colors.reset

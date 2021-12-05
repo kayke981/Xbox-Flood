@@ -26,7 +26,7 @@ def search(namertag, key, b):
 	if data.status_code != 200:
 		raise TypeError(data.text)
 		pass
-	msg = colors.grey + '[' + colors.green + '+' + colors.reset + ']' + colors.grey + colors.reset + ' Xuid successfully found'
+	msg = colors.grey + '[' + colors.green + '+' + colors.reset + colors.grey + ']' + colors.reset + ' Xuid successfully found'
 	if b == 0:
 		print(msg)
 	return data.json()["profileUsers"][0]["id"]
@@ -53,14 +53,14 @@ def menu():
 		amount = input('How many messages do you want to send?: ')
 		namertag = input('Put the namertag: ')
 		message = input('What message do you want to send?: ')
-		print(colors.grey + '[' + colors.blue + '*' + colors.reset + ']' + colors.reset + ' Starting...')
+		print(colors.grey + '[' + colors.blue + '*' + colors.reset + colors.grey + ']' + colors.reset + ' Starting...')
 		time.sleep(1)
 		for b in range(int(amount)):
 			t = threading.Thread(target=send_message, args=(namertag, message, key, b))
 			t.deamon = True 
 			t.start()
 			t.join()
-		print(colors.grey + '[' + colors.blue + '*' + colors.reset + ']' + colors.reset + ' Finished')
+		print(colors.grey + '[' + colors.blue + '*' + colors.reset + colors.grey + ']' + colors.reset + ' Finished')
 def main():
 	print(colors.yellow + "[!] If you mess up, it's all your problem" + colors.reset)
 	print(colors.green + '[+] Starting the menu...' + colors.reset)

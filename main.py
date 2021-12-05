@@ -4,10 +4,12 @@ from lib.header.header import agent
 import json
 import time
 import threading
+import random
+
+s = Session()
 
 def request(method, path, headers, payload):
 	BaseUrl = 'https://xbl.io/api/v2'
-	s = Session()
 	url = BaseUrl + path
 	user_agent = agent()
 	headers["User-Agent"] = user_agent
@@ -18,7 +20,7 @@ def request(method, path, headers, payload):
 	pp = req.prepare()
 	res = s.send(pp)
 	return res
-def search(namertag, key, b):
+def search(namertag, key):
 	headers = {}
 	headers["X-Authorization"] = key
 	data = request('GET', '/friends/search?gt=' + namertag, headers, payload = {})
@@ -27,20 +29,21 @@ def search(namertag, key, b):
 		raise TypeError(data.text)
 		pass
 	msg = colors.grey + '[' + colors.green + '+' + colors.reset + colors.grey + ']' + colors.reset + ' Xuid successfully found'
-	if b == 0:
-		print(msg)
+	print(msg)
 	return data.json()["profileUsers"][0]["id"]
 
-def send_message(namertag, message, key, b):
-	xuid = search(namertag, key, b)
+def send_message(xuid, message, key, b):
 	headers = {} 
 	headers["X-Authorization"] = key
+	headers["User-Agent"] = agent()
+	headers["Connection"] = 'keep-alive'
+	headers["Keep-Alive"] = str(random.randint(110,120))
 	payload = {}
 	payload["xuid"] = xuid
 	payload["message"] = message
 	res = request('POST', '/conversations', headers, payload)
-	if res.status_code != 200:
-		msgError = colors.red + '[!]' + colors.reset + colors.white + ' Message not sent, an error occurred' + colors.reset
+	if res.text == None:
+		msgError = colors.red + '[!]' + colors.reset + colors.white + ' Message not sent, an error occurred (' + str(b+1) + ')' + colors.reset
 		print(msgError)
 	msgSuccess = colors.grey + '[' + colors.green + '+' + colors.reset + colors.grey + ']' + colors.reset + colors.white + ' Message sent successfully (' + str(b+1) + ')' + colors.reset
 	print(msgSuccess)
@@ -54,9 +57,10 @@ def menu():
 		namertag = input('Put the namertag: ')
 		message = input('What message do you want to send?: ')
 		print(colors.grey + '[' + colors.blue + '*' + colors.reset + colors.grey + ']' + colors.reset + ' Starting...')
-		time.sleep(1)
+		print(colors.grey + '[' + colors.blue + '*' + colors.reset + colors.grey + ']' + colors.reset + ' Finding xuid...')
+		xuid = search(namertag, key)
 		for b in range(int(amount)):
-			t = threading.Thread(target=send_message, args=(namertag, message, key, b))
+			t = threading.Thread(target=send_message, args=(xuid, message, key, b))
 			t.deamon = True 
 			t.start()
 			t.join()

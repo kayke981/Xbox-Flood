@@ -1,3 +1,10 @@
+* [Intruduction](#intruduction)
+* [Installations](#installation)
+* [Usage](#usage)
+* [Installing Python 3](#installing-python-3)
+* [Wiki](#wiki)
+  *  [Creating Key](https://github.com/kayke981/Xbox-Flood/wiki/getting-started) 
+
 # Intruduction
 Xbox-Flood is for flooding messages (invitations will be done soon) on xbox, to use it you need to go to [xbl.io](https://xbl.io), then login and create your key
 This project was created on the intuition that I troll my friends, but I don't recommend it to flood other accounts of unknown people, have fun

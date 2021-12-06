@@ -1,5 +1,5 @@
 * [Intruduction](#intruduction)
-* [Installations](#installation)
+* [Installation](#installation)
 * [Usage](#usage)
 * [Installing Python 3](#installing-python-3)
 * [Wiki](#wiki)

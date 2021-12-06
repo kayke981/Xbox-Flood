@@ -3,7 +3,8 @@
 * [Usage](#usage)
 * [Installing Python 3](#installing-python-3)
 * [Wiki](#wiki)
-  *  [Creating Key](https://github.com/kayke981/Xbox-Flood/wiki/Getting-Started#creating-a-key) 
+  *  [Getting Started](https://github.com/kayke981/Xbox-Flood/wiki/Getting-Started)
+     *   [Creating a Key](https://github.com/kayke981/Xbox-Flood/wiki/Getting-Started#creating-a-key) 
 
 # Intruduction
 Xbox-Flood is for flooding messages (invitations will be done soon) on xbox, to use it you need to go to [xbl.io](https://xbl.io), then login and create your key.

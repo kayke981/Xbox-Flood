@@ -21,6 +21,8 @@ git clone https://github.com/kayke981/Xbox-Flood xbf
 python3 main.py
 ```
 
+![image](https://cdn.discordapp.com/attachments/795130563916595270/917552223813255178/Sem_titulo.png)
+
 # Installing Python 3
 If you don't have one of these operating systems, go to the [Official Python Website](https://www.python.org/downloads/)
 

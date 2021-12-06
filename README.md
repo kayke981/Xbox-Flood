@@ -31,5 +31,5 @@ sudo apt-get install python3 -y
 
 # Wiki
 
-* Getting Started
+* [Getting Started](https://github.com/kayke981/Xbox-Flood/wiki/Getting-Started)
   *  [Creating key](https://github.com/kayke981/Xbox-Flood/wiki/Getting-Started#creating-a-key)

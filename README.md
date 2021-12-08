@@ -18,7 +18,7 @@ git clone https://github.com/kayke981/Xbox-Flood xbf
 
 # Usage
 ```
-python3 main.py
+python3 xbf.py
 ```
 
 ![image](https://cdn.discordapp.com/attachments/795130563916595270/917552223813255178/Sem_titulo.png)

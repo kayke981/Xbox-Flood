@@ -2,7 +2,6 @@ from requests import Session, Request
 from lib.log.main import console, colors
 from lib.header.header import agent
 import json
-import time
 import threading
 import random
 

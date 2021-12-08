@@ -28,7 +28,7 @@ If you don't have one of these operating systems, go to the [Official Python Web
 
 On Debian and Kali Linux
 ```
-sudo apt-get update && apt-get install upgrade
+sudo apt-get update && apt-get upgrade
 sudo apt-get install python3 -y
 ```
 

@@ -1,5 +1,4 @@
 import random
-from ..log.main import console, colors
 
 def agent():
 	req = (

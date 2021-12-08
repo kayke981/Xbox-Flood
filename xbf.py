@@ -27,9 +27,10 @@ def search(namertag, key):
 	if data.status_code != 200:
 		raise TypeError(data.text)
 		pass
-	msg = colors.grey + '[' + colors.green + '+' + colors.reset + colors.grey + ']' + colors.reset + ' Xuid successfully found'
+	xuid = data.json()["profileUsers"][0]["id"]
+	msg = colors.grey + '[' + colors.green + '+' + colors.reset + colors.grey + ']' + colors.reset + ' Xuid successfully found of %s (%s)' % (namertag, xuid)
 	print(msg)
-	return data.json()["profileUsers"][0]["id"]
+	return xuid
 
 def send_message(xuid, message, key, b):
 	headers = {} 
@@ -56,8 +57,9 @@ def menu():
 		namertag = input('Put the namertag: ')
 		message = input('What message do you want to send?: ')
 		print(colors.grey + '[' + colors.blue + '*' + colors.reset + colors.grey + ']' + colors.reset + ' Starting...')
-		print(colors.grey + '[' + colors.blue + '*' + colors.reset + colors.grey + ']' + colors.reset + ' Finding xuid...')
+		print(colors.grey + '[' + colors.blue + '*' + colors.reset + colors.grey + ']' + colors.reset + " Finding xuid of %s..." % (namertag))
 		xuid = search(namertag, key)
+		print(colors.grey + '[' + colors.blue + '*' + colors.reset + colors.grey + ']' + colors.reset + " Preparing... Sending message to %s (%s)" % (namertag, xuid))
 		for b in range(int(amount)):
 			t = threading.Thread(target=send_message, args=(xuid, message, key, b))
 			t.deamon = True 

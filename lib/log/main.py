@@ -21,3 +21,19 @@ class colors:
   dark_cyan = "\x1b[36m"
   white = "\x1b[m"
   green = "\x1b[92;1m"
+
+def consoleColor(color, signal, message):
+	msg = "%s[%s%s%s%s]%s %s" % (colors.grey, color, signal, colors.reset, colors.grey, colors.reset, message)
+	return print(msg)
+
+def defaultConfiguration(type, message):
+	if len(type) < 1:
+		raise TypeError("Please provide a type of message")
+	if type == 'sucess':
+		return consoleColor(colors.green, '+',  message)
+	elif type == 'alert':
+		return consoleColor(colors.blue, '*', message)
+	elif type == 'unsucess':
+		return consoleColor(colors.bold_red, '-', message)
+	elif type == 'warning':
+		return consoleColor(colors.yellow, '!', message)

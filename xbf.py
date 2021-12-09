@@ -1,9 +1,10 @@
 from requests import Session, Request
-from lib.log.main import console, colors
+from lib.log.main import console, colors, defaultConfiguration
 from lib.header.header import agent
 import json
 import threading
 import random
+import os
 
 s = Session()
 
@@ -50,6 +51,7 @@ def send_message(xuid, message, key, b):
 def menu():
 	key = input('Put your key here: ')
 	print('1) - Spam messages'.center(50, ' '))
+	print('2) - Update'.center(43, ' '))
 	choice = input('Select an option: ')
 	if choice == '1':
 		b = 0
@@ -66,6 +68,11 @@ def menu():
 			t.start()
 			t.join()
 		print(colors.grey + '[' + colors.blue + '*' + colors.reset + colors.grey + ']' + colors.reset + ' Finished')
+	if choice == '2':
+		defaultConfiguration('alert', 'Starting pull request...')
+		defaultConfiguration('alert', "Executing 'git pull'")
+		os.system('git pull')
+		defaultConfiguration('sucess', 'Done...')
 def main():
 	print(colors.yellow + "[!] If you mess up, it's all your problem" + colors.reset)
 	print(colors.green + '[+] Starting the menu...' + colors.reset)

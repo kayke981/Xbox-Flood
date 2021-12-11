@@ -37,3 +37,6 @@ If you don't have one of these operating systems, go to the [Official Python Web
 
 * [Getting Started](https://github.com/kayke981/Xbox-Flood/wiki/Getting-Started)
   *  [Creating key](https://github.com/kayke981/Xbox-Flood/wiki/Getting-Started#creating-a-key)
+
+# License
+Refer to [LICENSE](https://github.com/inex1stent/Xbox-Flood/blob/main/LICENSE) file.

@@ -1,3 +1,4 @@
+# importing
 from requests import Session, Request
 from lib.log.main import console, colors, defaultConfiguration
 from lib.header.header import agent
@@ -8,6 +9,7 @@ import os
 
 s = Session()
 
+# request
 def request(method, path, headers, payload):
 	BaseUrl = 'https://xbl.io/api/v2'
 	url = BaseUrl + path
@@ -32,7 +34,7 @@ def search(namertag, key):
 	msg = colors.grey + '[' + colors.green + '+' + colors.reset + colors.grey + ']' + colors.reset + ' Xuid successfully found of %s (%s)' % (namertag, xuid)
 	print(msg)
 	return xuid
-
+# send message
 def send_message(xuid, message, key, b):
 	headers = {} 
 	headers["X-Authorization"] = key

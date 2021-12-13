@@ -12,13 +12,13 @@ This idea of this project was to troll my friends, but it's not recommend to flo
 # Installation
 If you don't have Python 3, go to [Installing Python 3](#installing-python-3)
 
-```
-git clone https://github.com/kayke981/Xbox-Flood xbf
+```console
+$ git clone https://github.com/kayke981/Xbox-Flood xbf
 ```
 
 # Usage
-```
-python3 xbf.py
+```console
+$ python3 xbf.py
 ```
 
 ![image](https://cdn.discordapp.com/attachments/795130563916595270/917552223813255178/Sem_titulo.png)
@@ -26,9 +26,9 @@ python3 xbf.py
 # Installing Python 3
 
 On Debian and Kali Linux
-```
-sudo apt-get update && apt-get upgrade
-sudo apt-get install python3 -y
+```console
+$ sudo apt-get update && apt-get upgrade
+$ sudo apt-get install python3 -y
 ```
 
 If you don't have one of these operating systems, go to the [Official Python Website](https://www.python.org/downloads/)

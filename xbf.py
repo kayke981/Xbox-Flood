@@ -1,4 +1,3 @@
-# importing
 from requests import Session, Request
 from lib.log.main import console, colors, defaultConfiguration
 from lib.header.header import agent
@@ -9,7 +8,6 @@ import os
 
 s = Session()
 
-# request
 def request(method, path, headers, payload):
 	BaseUrl = 'https://xbl.io/api/v2'
 	url = BaseUrl + path
@@ -31,10 +29,8 @@ def search(namertag, key):
 		raise TypeError(data.text)
 		pass
 	xuid = data.json()["profileUsers"][0]["id"]
-	msg = colors.grey + '[' + colors.green + '+' + colors.reset + colors.grey + ']' + colors.reset + ' Xuid successfully found of %s (%s)' % (namertag, xuid)
-	print(msg)
+	defaultConfiguration('sucess', 'Xuid successfully found of %s (%s)' % (namertag, xuid))
 	return xuid
-# send message
 def send_message(xuid, message, key, b):
 	headers = {} 
 	headers["X-Authorization"] = key
@@ -46,30 +42,25 @@ def send_message(xuid, message, key, b):
 	payload["message"] = message
 	res = request('POST', '/conversations', headers, payload)
 	if res.text == None:
-		msgError = colors.red + '[!]' + colors.reset + colors.white + ' Message not sent, an error occurred (' + str(b+1) + ')' + colors.reset
-		print(msgError)
-	msgSuccess = colors.grey + '[' + colors.green + '+' + colors.reset + colors.grey + ']' + colors.reset + colors.white + ' Message sent successfully (' + str(b+1) + ')' + colors.reset
-	print(msgSuccess)
+		defaultConfiguration('error', 'Message not sent, an error occurred')
+	defaultConfiguration('sucess', 'Message sent successfully')
 def menu():
 	key = input('Put your key here: ')
 	print('1) - Spam messages'.center(50, ' '))
 	print('2) - Update'.center(43, ' '))
 	choice = input('Select an option: ')
 	if choice == '1':
-		b = 0
 		amount = input('How many messages do you want to send?: ')
 		namertag = input('Put the namertag: ')
 		message = input('What message do you want to send?: ')
-		print(colors.grey + '[' + colors.blue + '*' + colors.reset + colors.grey + ']' + colors.reset + ' Starting...')
-		print(colors.grey + '[' + colors.blue + '*' + colors.reset + colors.grey + ']' + colors.reset + " Finding xuid of %s..." % (namertag))
+		defaultConfiguration('alert', 'Starting...')
+		defaultConfiguration('alert', "Finding xuid of %s..." % (namertag))
 		xuid = search(namertag, key)
-		print(colors.grey + '[' + colors.blue + '*' + colors.reset + colors.grey + ']' + colors.reset + " Preparing... Sending message to %s (%s)" % (namertag, xuid))
+		defaultConfiguration('alert', "Preparing... Sending message to %s (%s)" % (namertag, xuid))
 		for b in range(int(amount)):
 			t = threading.Thread(target=send_message, args=(xuid, message, key, b))
-			t.deamon = True 
+			t.deamon = True
 			t.start()
-			t.join()
-		print(colors.grey + '[' + colors.blue + '*' + colors.reset + colors.grey + ']' + colors.reset + ' Finished')
 	if choice == '2':
 		defaultConfiguration('alert', 'Starting pull request...')
 		defaultConfiguration('alert', "Executing 'git pull'")
@@ -77,6 +68,9 @@ def menu():
 		defaultConfiguration('sucess', 'Done...')
 def main():
 	print(colors.yellow + "[!] If you mess up, it's all your problem" + colors.reset)
-	print(colors.green + '[+] Starting the menu...' + colors.reset)
+	defaultConfiguration('alert', 'Starting the menu...')
 	menu()
-main()
+try:
+	main()
+except KeyboardInterrupt:
+	pass

@@ -10,17 +10,14 @@ def console(message):
 	logger.info(message)
     
 class colors:
-  grey = "\x1b[38;1m" 
-  yellow = "\x1b[33m" 
-  red = "\x1b[31m" 
-  bold_red = "\x1b[31;1m" 
-  reset = "\x1b[0m"
-  bold = "\x1b[1m"
-  blue = "\x1b[94m"
-  cyan = "\x1b[96;1m"
-  dark_cyan = "\x1b[36m"
-  white = "\x1b[m"
-  green = "\x1b[92;1m"
+	grey = "\x1b[38;1m"
+	yellow = "\x1b[33m"
+	red = "\x1b[31;1m"
+	blue = "\x1b[94;34m"
+	green = "\x1b[92;1m"
+	reset = "\x1b[0m"
+	critical = "\x1b[0;37;41m"
+
 
 def consoleColor(color, signal, message):
 	msg = "%s[%s%s%s%s]%s %s" % (colors.grey, color, signal, colors.reset, colors.grey, colors.reset, message)
@@ -37,3 +34,5 @@ def defaultConfiguration(type, message):
 		return consoleColor(colors.bold_red, '-', message)
 	elif type == 'warning':
 		return consoleColor(colors.yellow, '!', message)
+	elif type == 'critical':
+		return consoleColor(colors.critical, 'CRITICAL', message)

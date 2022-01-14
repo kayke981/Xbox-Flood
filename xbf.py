@@ -17,6 +17,14 @@ def parser_args():
 
 s = Session()
 
+def banner():
+	print('██╗░░██╗██████╗░░█████╗░██╗░░██╗  ███████╗██╗░░░░░░█████╗░░█████╗░██████╗░')
+	print('╚██╗██╔╝██╔══██╗██╔══██╗╚██╗██╔╝  ██╔════╝██║░░░░░██╔══██╗██╔══██╗██╔══██╗')
+	print('░╚███╔╝░██████╦╝██║░░██║░╚███╔╝░  █████╗░░██║░░░░░██║░░██║██║░░██║██║░░██║')
+	print('░██╔██╗░██╔══██╗██║░░██║░██╔██╗░  ██╔══╝░░██║░░░░░██║░░██║██║░░██║██║░░██║')
+	print('██╔╝╚██╗██████╦╝╚█████╔╝██╔╝╚██╗  ██║░░░░░███████╗╚█████╔╝╚█████╔╝██████╔╝')
+	print('╚═╝░░╚═╝╚═════╝░░╚════╝░╚═╝░░╚═╝  ╚═╝░░░░░╚══════╝░╚════╝░░╚════╝░╚═════╝░')
+
 def request(method, path, headers, payload):
 	BaseUrl = 'https://xbl.io/api/v2'
 	url = BaseUrl + path
@@ -89,6 +97,7 @@ def menu():
 			t.deamon = True
 			t.start()
 def main():
+	banner()
 	print(colors.yellow + "[!] If you mess up, it's all your problem" + colors.reset)
 	defaultConfiguration('alert', 'Starting the menu...')
 	menu()

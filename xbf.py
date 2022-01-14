@@ -5,6 +5,15 @@ import json
 import threading
 import random
 import os
+import argparse
+import sys
+
+def parser_args():
+	parser = argparse.ArgumentParser(description='Use api xbl for spam messages')
+	parser.add_argument("-k", "--key", help='API Key', type=str)
+	parser.add_argument("--update", action="store_true", help='Update repo')
+	return parser
+
 
 s = Session()
 
@@ -24,10 +33,12 @@ def search(namertag, key):
 	headers = {}
 	headers["X-Authorization"] = key
 	data = request('GET', '/friends/search?gt=' + namertag, headers, payload = {})
-	
-	if data.status_code != 200:
-		raise TypeError(data.text)
-		pass
+	if data.status_code == 200:
+		if 'Invalid API Key.' in data.text:
+			defaultConfiguration('critical', 'Invalid api key')
+			sys.exit()
+		
+
 	xuid = data.json()["profileUsers"][0]["id"]
 	defaultConfiguration('sucess', 'Xuid successfully found of %s (%s)' % (namertag, xuid))
 	return xuid
@@ -42,12 +53,21 @@ def send_message(xuid, message, key, b):
 	payload["message"] = message
 	res = request('POST', '/conversations', headers, payload)
 	if res.text == None:
-		defaultConfiguration('error', 'Message not sent, an error occurred')
+		defaultConfiguration('unsucess', 'Message not sent, an error occurred')
 	defaultConfiguration('sucess', 'Message sent successfully')
 def menu():
-	key = input('Put your key here: ')
+	args = parser_args().parse_args()
+	key = ''
+	parser = parser_args()
+	if args:
+		parser.print_help()
+		sys.exit()
+	if args.key is None:
+		defaultConfiguration('unsucess', 'Use --key or -k and put your api key')
+		sys.exit()
+	else:
+		key = args.key
 	print('1) - Spam messages'.center(50, ' '))
-	print('2) - Update'.center(43, ' '))
 	choice = input('Select an option: ')
 	if choice == '1':
 		amount = input('How many messages do you want to send?: ')
@@ -61,7 +81,7 @@ def menu():
 			t = threading.Thread(target=send_message, args=(xuid, message, key, b))
 			t.deamon = True
 			t.start()
-	if choice == '2':
+	if args.update:
 		defaultConfiguration('alert', 'Starting pull request...')
 		defaultConfiguration('alert', "Executing 'git pull'")
 		os.system('git pull')
@@ -71,6 +91,7 @@ def main():
 	defaultConfiguration('alert', 'Starting the menu...')
 	menu()
 try:
-	main()
+	if __name__ == '__main__':
+		main()
 except KeyboardInterrupt:
 	pass

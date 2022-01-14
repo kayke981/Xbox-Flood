@@ -16,7 +16,7 @@ class colors:
 	blue = "\033[1;34;40m"
 	green = "\033[1;32;40m"
 	reset = "\033[0m"
-	critical = "\033[0;37;41m"
+	critical = "\033[1;37;41m"
 
 
 def consoleColor(color, signal, message):
@@ -31,7 +31,7 @@ def defaultConfiguration(type, message):
 	elif type == 'alert':
 		return consoleColor(colors.blue, '*', message)
 	elif type == 'unsucess':
-		return consoleColor(colors.bold_red, '-', message)
+		return consoleColor(colors.red, '-', message)
 	elif type == 'warning':
 		return consoleColor(colors.yellow, '!', message)
 	elif type == 'critical':

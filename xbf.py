@@ -62,6 +62,12 @@ def menu():
 	if args is None:
 		parser.print_help()
 		sys.exit()
+	if args.update:
+		defaultConfiguration('alert', 'Starting pull request...')
+		defaultConfiguration('alert', "Executing 'git pull'")
+		os.system('git pull')
+		defaultConfiguration('sucess', 'Done...')
+		
 	if args.key is None:
 		defaultConfiguration('unsucess', 'Use --key or -k and put your api key')
 		sys.exit()
@@ -81,11 +87,6 @@ def menu():
 			t = threading.Thread(target=send_message, args=(xuid, message, key, b))
 			t.deamon = True
 			t.start()
-	if args.update:
-		defaultConfiguration('alert', 'Starting pull request...')
-		defaultConfiguration('alert', "Executing 'git pull'")
-		os.system('git pull')
-		defaultConfiguration('sucess', 'Done...')
 def main():
 	print(colors.yellow + "[!] If you mess up, it's all your problem" + colors.reset)
 	defaultConfiguration('alert', 'Starting the menu...')

@@ -14,14 +14,24 @@ If you don't have Python 3, go to [Installing Python 3](#installing-python-3)
 
 ```console
 $ git clone https://github.com/kayke981/Xbox-Flood xbf
+$ cd xbf
+$ sudo pip install -r requirements.txt
 ```
 
 # Usage
 ```console
-$ python3 xbf.py
+$ python3 xbf.py -h
 ```
 
-![image](https://cdn.discordapp.com/attachments/795130563916595270/917552223813255178/Sem_titulo.png)
+![img](/img/test.png)
+
+# Options
+|   Option  |   Argument   |    Description   |
+| --------- | ------------ | ---------------- |
+| -k, --key |    API Key   | Put your API key |
+|  --update |    None      | Update repo      |
+
+
 
 # Installing Python 3
 
@@ -30,7 +40,6 @@ On Debian and Kali Linux
 $ sudo apt-get update && apt-get upgrade
 $ sudo apt-get install python3 -y
 ```
-
 If you don't have one of these operating systems, go to the [Official Python Website](https://www.python.org/downloads/)
 
 # Wiki

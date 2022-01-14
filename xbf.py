@@ -67,7 +67,8 @@ def menu():
 		defaultConfiguration('alert', "Executing 'git pull'")
 		os.system('git pull')
 		defaultConfiguration('sucess', 'Done...')
-		
+		sys.exit()
+
 	if args.key is None:
 		defaultConfiguration('unsucess', 'Use --key or -k and put your api key')
 		sys.exit()

@@ -10,17 +10,17 @@ def console(message):
 	logger.info(message)
     
 class colors:
-	grey = "\x1b[38;1m"
-	yellow = "\x1b[33m"
-	red = "\x1b[31;1m"
-	blue = "\x1b[94;34m"
-	green = "\x1b[92;1m"
-	reset = "\x1b[0m"
-	critical = "\x1b[0;37;41m"
+	grey = "\033[1;38;40m"
+	yellow = "\033[1;33;40m"
+	red = "\033[1;31;40m"
+	blue = "\033[1;34;40m"
+	green = "\033[1;32;40m"
+	reset = "\033[0m"
+	critical = "\033[0;37;41m"
 
 
 def consoleColor(color, signal, message):
-	msg = "%s[%s%s%s%s]%s %s" % (colors.grey, color, signal, colors.reset, colors.grey, colors.reset, message)
+	msg = "%s[%s] %s %s" % (color, signal, message, colors.reset)
 	return print(msg)
 
 def defaultConfiguration(type, message):

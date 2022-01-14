@@ -59,7 +59,7 @@ def menu():
 	args = parser_args().parse_args()
 	key = ''
 	parser = parser_args()
-	if args:
+	if args is None:
 		parser.print_help()
 		sys.exit()
 	if args.key is None:
